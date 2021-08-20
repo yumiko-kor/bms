@@ -279,7 +279,7 @@ public class AdminGoodsController {
 		}
 		
 		HttpSession session = multipartRequest.getSession();
-		MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("memberInfo");  // memberInfo가 왜 필요?
 		
 		List<ImageFileDTO> imageFileList = null;
 		int goodsId=0;
@@ -287,7 +287,7 @@ public class AdminGoodsController {
 			imageFileList = fileController.upload(multipartRequest);
 			if (imageFileList != null && imageFileList.size() != 0) {
 				for (ImageFileDTO imageFileDTO : imageFileList) {
-					goodsId = Integer.parseInt((String)goodsMap.get("goodsId"));
+					goodsId = Integer.parseInt((String)goodsMap.get("goodsId"));  // 굿즈번호를 가져오고 image file을 채운 후에 -> 다시 goodsID를 set?
 					imageFileDTO.setGoodsId(goodsId);
 				}
 				

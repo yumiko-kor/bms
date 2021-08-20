@@ -77,7 +77,7 @@
 	    formObj.action="${contextPath}/order/orderEachGoods.do";
 	    formObj.submit();
 	    
-	}	
+
 </script>
 </head>
 <body>
