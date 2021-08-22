@@ -42,7 +42,7 @@
 		var orderGoodsQty = document.getElementById("orderGoodsQty");
 		var isLogOn = document.getElementById("isLogOn").value;
 		
-		if (isLogOn=="false" || isLogOn=='' ){
+		if (isLogOn=="false" || isLogOn=="" ){
 			alert("로그인 후 주문이 가능합니다.");
 			return;
 		} 
@@ -77,6 +77,7 @@
 	    formObj.action="${contextPath}/order/orderEachGoods.do";
 	    formObj.submit();
 	    
+	}
 
 </script>
 </head>
@@ -104,7 +105,7 @@
 				<tr class="dot_line">
 					<td class="fixed">판매가</td>
 					<td class="active">
-						<span><fmt:formatNumber value="${goods.goodsPrice*0.9}" type="number" var="discountedPrice" /> ${discountedPrice}원(10%할인)</span>
+						<span><fmt:formatNumber value="${goods.goodsPrice*0.9}" type="number" var="discountedPrice" /> ${discountedPrice}원(10% 할인)</span>
 				    </td>
 				</tr>
 				<tr>
@@ -149,7 +150,7 @@
 				</tr>
 				<tr>
 					<td class="fixed">수량</td>
-					<td class="fixed">
+					<td>
 				      <select style="width: 60px;" id="orderGoodsQty">
 					  	<option>1</option>
 					  	<option>2</option>
@@ -157,7 +158,7 @@
 					  	<option>4</option>
 					  	<option>5</option>
 				     </select>
-					 </td>
+				    </td>
 				</tr>
 			</tbody>
 		</table>
