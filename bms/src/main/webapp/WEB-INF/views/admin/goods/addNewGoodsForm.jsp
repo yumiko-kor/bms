@@ -61,8 +61,13 @@
 						<td width=200>제품분류</td>
 						<td width=500>
 							<select name="goodsSort" class="form-control" style="padding-bottom:0; padding-top:0; height:35px">
-								<option value="컴퓨터와 인터넷" selected>컴퓨터와 인터넷
-								<option value="디지털 기기">디지털 기기
+								<option value="인문 / 소설" selected>인문 / 소설
+								<option value="사회 / 과학" selected>사회 / 과학
+								<option value="컴퓨터 / 인터넷" selected>컴퓨터 / 인터넷
+								<option value="참고서 / 교재" selected>참고서 / 교재
+								<option value="외국어" selected>외국어
+								<option value="자기계발서" selected>자기계발서
+								<option value="에세이" >에세이
 							</select>
 						</td>
 					</tr>

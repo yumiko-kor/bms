@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bms.admin.order.dao.AdminOrderDAO;
+import com.bms.goods.dto.ImageFileDTO;
 import com.bms.member.dto.MemberDTO;
 import com.bms.order.dto.OrderDTO;
 

@@ -184,8 +184,14 @@
 							<td>상품 분류</td>
 							<td>
 								<select name="goodsSort" class="form-control" style="height:30; padding:0">
-									<option value="컴퓨터와 인터넷" <c:if test="${goods.goodsSort=='컴퓨터와 인터넷' }">selected </c:if>> 컴퓨터와인터넷</option>
-									<option value="디지털 기기"  <c:if test="${goods.goodsSort=='디지털 기기' }">selected </c:if>>디지털기기</option>
+									<option value="인문 / 소설" <c:if test="${goods.goodsSort=='인문 / 소설' }">selected </c:if>> 인문 / 소설</option>
+									<option value="사회 / 과학" <c:if test="${goods.goodsSort=='사회 / 과학' }">selected </c:if>> 사회 / 과학</option>
+									<option value="컴퓨터 / 인터넷" <c:if test="${goods.goodsSort=='컴퓨터 / 인터넷' }">selected </c:if>> 컴퓨터 / 인터넷</option>
+									<option value="참고서 / 교재" <c:if test="${goods.goodsSort=='참고서 / 교재' }">selected </c:if>> 참고서 / 교재</option>
+									<option value="외국어" <c:if test="${goods.goodsSort=='외국어' }">selected </c:if>> 외국어</option>
+									<option value="자기계발서" <c:if test="${goods.goodsSort=='자기계발서' }">selected </c:if>> 자기계발서</option>
+									<option value="에세이" <c:if test="${goods.goodsSort=='에세이' }">selected </c:if>> 에세이</option>			
+								</select>
 								</select>
 							</td>
 							<td><input type="button" class="btn btn-outline-primary btn-sm" value="수정" onClick="fn_modify_goods('${goods.goodsId }','goodsSort')" /></td>

@@ -2,6 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
 </head>
 <body>
 	<h1>1. 주문 상세정보</h1>
@@ -33,7 +37,7 @@
 				</td>
 				<td><h2>${item.orderGoodsQty }개</h2></td>
 				<td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원 (10% 할인)</h2></td>
-				<td><h2>0원</h2></td>
+				<td><h2>${item.orderGoodsDeliveryPrice }원</h2></td>
 				<td><h2>${1500 * item.orderGoodsQty }원</h2></td>
 				<td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2></td>
 			</tr>
@@ -129,6 +133,8 @@
 	<br>
 	<br> 
 	<a href="${contextPath}/main/main.do"> 
-	   <img width="75" alt="" src="${contextPath}/resources/image/btn_shoping_continue.jpg">
+	   <img width="75" alt="img" src="${contextPath}/resources/image/btn_shoping_continue.jpg">
 	</a>
-<div class="clear"></div>						
+<div class="clear"></div>
+</body>
+</html>						

@@ -513,7 +513,7 @@
 				<tr>
 					<td class="goods_image">
 					  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">
-					    <img width="75" alt=""  src="${contextPath}/thumbnails.do?goodsId=${item.goodsId}&fileName=${item.goodsFileName}">
+					    <img width="75" alt="HTML5 &amp; CSS3"  src="${contextPath}/thumbnails.do?goodsId=${item.goodsId}&fileName=${item.goodsFileName}">
 					    <input type="hidden" id="h_goods_id" name="h_goods_id" value="${item.goodsId }" />
 					    <input type="hidden" id="h_goods_fileName" name="h_goods_fileName" value="${item.goodsFileName }" />
 					  </a>

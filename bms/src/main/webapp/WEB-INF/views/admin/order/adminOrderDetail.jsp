@@ -43,7 +43,7 @@
 				    <td> ${item.orderId }</td>
 					<td class="goods_image">
 					  <a href="${contextPath}/goods/goodsDetail.do?goodsId=${item.goodsId }">
-					    <img width="75" alt="상품 이미지" src="${contextPath}/thumbnails.do?goodsId=${item.goodsId}&fileName=${item.goodsFileName}">
+					    <img width="75" alt=""  src="${contextPath}/thumbnails.do?goodsId=${item.goodsId}&fileName=${item.goodsFileName}">
 					  </a>
 					</td>
 					<td>
