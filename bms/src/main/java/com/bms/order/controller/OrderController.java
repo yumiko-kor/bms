@@ -87,7 +87,6 @@ public class OrderController {
 			ordererName = memberDTO.getMemberName();
 		
 		String ordererHp = memberDTO.getHp1() + "-" + memberDTO.getHp2() + "-" + memberDTO.getHp3();
-		@SuppressWarnings("unchecked")
 		List<OrderDTO> myOrderList=(List<OrderDTO>)session.getAttribute("myOrderList");
 		
 		for (int i=0; i<myOrderList.size(); i++){
