@@ -84,8 +84,7 @@
 <body>
 
 
-	<h1>컴퓨터와 인터넷</h1>
-	<h2>국내외 도서 &gt; 컴퓨터와 인터넷 &gt; 웹 개발</h2>
+	<h1>${goods.goodsSort}</h1>
 	<h3>${goods.goodsTitle }</h3>
 	<h4>${goods.goodsWriter} &nbsp; 저| ${goods.goodsPublisher}</h4>
 	<div id="goods_image">
@@ -110,7 +109,7 @@
 				</tr>
 				<tr>
 					<td class="fixed">포인트적립</td>
-					<td class="active">${goods.goodsPoint}P 적립</td>
+					<td class="active"><fmt:formatNumber value="${goods.goodsSalesPrice/10}" type="number" var="goodsPoint" /> ${goodsPoint}원(10% 할인)</td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed">포인트 추가적립</td>

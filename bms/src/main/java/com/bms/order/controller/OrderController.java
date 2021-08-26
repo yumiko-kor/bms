@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +23,7 @@ import com.bms.goods.dto.GoodsDTO;
 import com.bms.member.dto.MemberDTO;
 import com.bms.order.dto.OrderDTO;
 import com.bms.order.service.OrderService;
+import com.sun.tools.sjavac.comp.dependencies.PublicApiCollector;
 
 @Controller("orderController")
 @RequestMapping(value="/order")
@@ -62,6 +64,10 @@ public class OrderController {
 
 		MemberDTO memberInfo = (MemberDTO)session.getAttribute("memberInfo");
 		
+		Map<String, Object> res = orderService.goodsDeliveryPrice(); // GoodsDeliveryPrice
+		mv.addObject("GoodsDeliveryPrice" , res);
+		
+		session.setAttribute("GoodsDeliveryPrice", res);
 		session.setAttribute("myOrderList", myOrderList);
 		session.setAttribute("orderer", memberInfo);
 		

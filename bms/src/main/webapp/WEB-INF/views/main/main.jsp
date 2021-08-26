@@ -31,7 +31,7 @@
 </div>
 <div class="clear"></div>
 <div id="ad_sub_banner">
-	<img width="770" height="117" src="${contextPath}/resources/image/sub_banner01.jpg">
+	<a href="${contextPath}/goods/goodsDetail.do?goodsId=1" target="_self"><img width="770" height="117" src="${contextPath}/resources/image/sub_banner01.jpg"></a>
 </div>
 <div class="main_book" >
 <c:set  var="goodsCount" value="0" />

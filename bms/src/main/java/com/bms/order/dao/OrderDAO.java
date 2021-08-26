@@ -1,6 +1,7 @@
 package com.bms.order.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
@@ -11,5 +12,6 @@ public interface OrderDAO {
 	public List<OrderDTO> listMyOrderGoods(OrderDTO orderBean) throws DataAccessException;
 	public void insertNewOrder(List<OrderDTO> myOrderList) throws DataAccessException;
 	public OrderDTO findMyOrder(String orderId) throws DataAccessException;
+	public Map<String, Object> goodsDeliveryPrice() throws DataAccessException;
 
 }

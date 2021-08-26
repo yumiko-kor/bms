@@ -30,7 +30,7 @@
 				<td><h2><a href="${contextPath}/goods/goodsDetail.do?goodsId=${item.goodsId }">${item.goodsTitle }</a></h2></td>
 				<td><h2>${item.orderGoodsQty }개</h2></td>
 				<td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원 (10% 할인)</h2></td>
-				<td><h2>0원</h2></td>
+				<td><h2>${item.goodsDeliveryPrice }원</h2></td>
 				<td><h2>${1500 *item.orderGoodsQty }원</h2></td>
 				<td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2></td>
 			</tr>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"  />
 <c:set var="orderer_hp" 			 value=""/>			<!-- 주문자 휴대폰 번호 -->
 <c:set var="final_total_order_price" value="0" />		<!-- 최종 결제 금액 -->
@@ -7,7 +8,6 @@
 <c:set var="total_order_goods_qty"   value="0" />		<!-- 총 상품수 -->
 <c:set var="total_discount_price"    value="0" />		<!-- 총할인금액 -->
 <c:set var="total_delivery_price"    value="0" />		<!-- 총 배송비 -->
-
 <head>
 <style>
 #layer {
@@ -529,8 +529,12 @@
 					    <input type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.orderGoodsQty}" />
 					</td>
 					<td><h2>${item.goodsSalesPrice}원 (10% 할인)</h2></td>
-					<td><h2>0원</h2></td>
-					<td><h2>${1500 *item.orderGoodsQty}원</h2></td>
+					</c:forEach>
+					<c:forEach var="res" items="${res }">
+					<td><h2>${res.GoodsDeliveryPrice }원</h2></td> <!-- 배송비 -->
+					</c:forEach>
+					<c:forEach var="item" items="${myOrderList }">
+					<td><h2><fmt:formatNumber value="${item.goodsSalesPrice/10}" type="number" var="point" /> ${point}원</h2></td>
 					<td>
 					  <h2>${item.goodsSalesPrice * item.orderGoodsQty}원</h2>
 					  <input type="hidden" id="h_each_goods_price"  name="h_each_goods_price" value="${item.goodsSalesPrice * item.orderGoodsQty}" />

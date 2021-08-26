@@ -1,6 +1,7 @@
 package com.bms.order.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,11 @@ public class OrderServiceImpl implements OrderService {
 	
 	public OrderDTO findMyOrder(String orderId) throws Exception{
 		return orderDAO.findMyOrder(orderId);
+	}
+
+	@Override
+	public Map<String, Object> goodsDeliveryPrice() throws Exception {
+		return orderDAO.goodsDeliveryPrice();
 	}
 
 }

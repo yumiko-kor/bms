@@ -40,7 +40,7 @@
 			       #{goodsPublisher},
 			       #{goodsSort},
 			       #{goodsSalesPrice},
-			       #{goodsPoint},
+			       #{goodsPoint}, 
 			       TO_DATE(#{goodsPublishedDate},'YYYY-MM-DD'),
 			       #{goodsTotalPage},
 			       #{goodsIsbn},

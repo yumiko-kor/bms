@@ -1,7 +1,10 @@
 package com.bms.order.dao;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -35,6 +38,11 @@ public class OrderDAOImpl implements OrderDAO {
 	
 	private int selectOrderID() throws DataAccessException{
 		return sqlSession.selectOne("mapper.order.selectOrderID");
+	}
+
+	@Override
+	public Map<String, Object> goodsDeliveryPrice() throws DataAccessException {
+		return sqlSession.selectOne("mapper.order.goodsDeliveryPrice");
 	}
 	
 }
