@@ -59,16 +59,15 @@ public class OrderController {
 		
 		ModelAndView mv = new ModelAndView();  			
 		mv.setViewName("/order/orderEachGoods");
-		List<OrderDTO> myOrderList = new ArrayList<OrderDTO>();
-		myOrderList.add(odto);
 
 		MemberDTO memberInfo = (MemberDTO)session.getAttribute("memberInfo");
 		
-		Map<String, Object> res = orderService.goodsDeliveryPrice(); // GoodsDeliveryPrice
-		mv.addObject("GoodsDeliveryPrice" , res);
+		GoodsDTO goods = orderService.goodsDetail(odto.getGoodsId()); // GoodsDeliveryPrice
+		mv.addObject(goods.getGoodsDeliveryPrice());
+		mv.addObject(goods.getGoodsPoint());
 		
-		session.setAttribute("GoodsDeliveryPrice", res);
-		session.setAttribute("myOrderList", myOrderList);
+		session.setAttribute("goods", goods);
+		session.setAttribute("myOrderList", orderDTO);
 		session.setAttribute("orderer", memberInfo);
 		
 		return mv;

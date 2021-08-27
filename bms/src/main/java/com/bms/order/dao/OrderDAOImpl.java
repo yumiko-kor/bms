@@ -1,15 +1,13 @@
 package com.bms.order.dao;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.bms.goods.dto.GoodsDTO;
 import com.bms.order.dto.OrderDTO;
 
 @Repository("orderDAO")
@@ -41,8 +39,8 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
-	public Map<String, Object> goodsDeliveryPrice() throws DataAccessException {
-		return sqlSession.selectOne("mapper.order.goodsDeliveryPrice");
+	public GoodsDTO goodsDetail(int goodsId) throws DataAccessException {
+		return sqlSession.selectOne("mapper.order.goodsDetail",goodsId);
 	}
 	
 }

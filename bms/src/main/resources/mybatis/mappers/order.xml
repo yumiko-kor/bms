@@ -79,20 +79,17 @@
     	]]>
 	</select>
 	
-	<resultMap type="map" id="goodsDeliveryPrice">
-		<result column="GOODS_ID" property="goodsId"/>
-		<result column="GOODS_DELIVERY_PRICE" property="goodsDeliveryPrice" />
-	</resultMap>
+	
 
-	<select id="goodsDeliveryPrice" resultMap="goodsDeliveryPrice">
+	<select id="goodsDetail" resultType="GoodsDTO" parameterType="int">
 		select
-				O.GOODS_ID					AS GOODS_ID,
-				G.GOODS_DELIVERY_PRICE 		AS GOODS_DELIVERY_PRICE
+				GOODS_DELIVERY_PRICE,
+                goods_point
+                
 		FROM
-				T_SHOPPING_ORDER O,
-				T_SHOPPING_GOODS G
+				T_SHOPPING_GOODS
 		WHERE
-				O.GOODS_ID = G.GOODS_ID AND O.GOODS_ID = 변수
+				GOODS_ID = #{goodsId}
 	</select>
 	
 </mapper>

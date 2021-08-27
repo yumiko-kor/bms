@@ -1,13 +1,13 @@
 package com.bms.order.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bms.goods.dto.GoodsDTO;
 import com.bms.order.dao.OrderDAO;
 import com.bms.order.dto.OrderDTO;
 
@@ -32,8 +32,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Map<String, Object> goodsDeliveryPrice() throws Exception {
-		return orderDAO.goodsDeliveryPrice();
+	public GoodsDTO goodsDetail(int goodsId) throws Exception {
+		return orderDAO.goodsDetail(goodsId);
 	}
 
 }

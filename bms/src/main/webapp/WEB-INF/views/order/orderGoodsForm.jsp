@@ -509,42 +509,36 @@
 				<td>예상적립금</td>
 				<td>주문금액합계</td>
 			</tr>
-			<c:forEach var="item" items="${myOrderList }">
-				<tr>
-					<td class="goods_image">
-					  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">
-					    <img width="75" alt="HTML5 &amp; CSS3"  src="${contextPath}/thumbnails.do?goodsId=${item.goodsId}&fileName=${item.goodsFileName}">
-					    <input type="hidden" id="h_goods_id" name="h_goods_id" value="${item.goodsId }" />
-					    <input type="hidden" id="h_goods_fileName" name="h_goods_fileName" value="${item.goodsFileName }" />
-					  </a>
-					</td>
-					<td>
-					  <h2>
-					     <a href="${pageContext.request.contextPath}/goods/goods.do?command=goodsDetail&goodsId=${item.goodsId }">${item.goodsTitle }</A>
-					      <input type="hidden" id="h_goods_title" name="h_goods_title" value="${item.goodsTitle }" />
-					  </h2>
-					</td>
-					<td>
-					  <h2>${item.orderGoodsQty }개</h2>
-					    <input type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.orderGoodsQty}" />
-					</td>
-					<td><h2>${item.goodsSalesPrice}원 (10% 할인)</h2></td>
-					</c:forEach>
-					<c:forEach var="res" items="${res }">
-					<td><h2>${res.GoodsDeliveryPrice }원</h2></td> <!-- 배송비 -->
-					</c:forEach>
-					<c:forEach var="item" items="${myOrderList }">
-					<td><h2><fmt:formatNumber value="${item.goodsSalesPrice/10}" type="number" var="point" /> ${point}원</h2></td>
-					<td>
-					  <h2>${item.goodsSalesPrice * item.orderGoodsQty}원</h2>
-					  <input type="hidden" id="h_each_goods_price"  name="h_each_goods_price" value="${item.goodsSalesPrice * item.orderGoodsQty}" />
-					</td>
-			</tr>
-			
-			<c:set var="final_total_order_price" value="${final_total_order_price+ item.goodsSalesPrice* item.orderGoodsQty}" />
-			<c:set var="total_order_price"       value="${total_order_price+ item.goodsSalesPrice* item.orderGoodsQty}" />
-			<c:set var="total_order_goods_qty"   value="${total_order_goods_qty + item.orderGoodsQty }" />
-			</c:forEach>
+			<tr>
+				<td class="goods_image">
+				  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${myOrderList.goodsId }">
+				    <img width="75" alt="HTML5 &amp; CSS3"  src="${contextPath}/thumbnails.do?goodsId=${myOrderList.goodsId}&fileName=${myOrderList.goodsFileName}">
+				    <input type="hidden" id="h_goods_id" name="h_goods_id" value="${myOrderList.goodsId }" />
+				    <input type="hidden" id="h_goods_fileName" name="h_goods_fileName" value="${myOrderList.goodsFileName }" />
+				  </a>
+				</td>
+				<td>
+				  <h2>
+				     <a href="${pageContext.request.contextPath}/goods/goods.do?command=goodsDetail&goodsId=${myOrderList.goodsId }">${myOrderList.goodsTitle }</A>
+				      <input type="hidden" id="h_goods_title" name="h_goods_title" value="${myOrderList.goodsTitle }" />
+				  </h2>
+				</td>
+				<td>
+				  <h2>${myOrderList.orderGoodsQty }개</h2>
+				    <input type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${myOrderList.orderGoodsQty}" />
+				</td>
+				<td><h2>${myOrderList.goodsSalesPrice}원 (10% 할인)</h2></td>
+				<td><h2>${goods.goodsDeliveryPrice }원</h2></td> <!-- 배송비 -->
+				<td><h2><fmt:formatNumber value="${myOrderList.goodsSalesPrice/10}" type="number" var="point" /> ${goods.goodsPoint}원</h2></td>
+				<td>
+				  <h2>${myOrderList.goodsSalesPrice * myOrderList.orderGoodsQty}원</h2>
+				  <input type="hidden" id="h_each_goods_price"  name="h_each_goods_price" value="${myOrderList.goodsSalesPrice * myOrderList.orderGoodsQty}" />
+				</td>
+		</tr>
+		
+		<c:set var="final_total_order_price" value="${final_total_order_price+ myOrderList.goodsSalesPrice* myOrderList.orderGoodsQty + goods.goodsDeliveryPrice}" />
+		<c:set var="total_order_price"       value="${total_order_price+ myOrderList.goodsSalesPrice* myOrderList.orderGoodsQty}" />
+		<c:set var="total_order_goods_qty"   value="${total_order_goods_qty + myOrderList.orderGoodsQty }" />
 		</tbody>
 	</table>
 	<div class="clear"></div>
