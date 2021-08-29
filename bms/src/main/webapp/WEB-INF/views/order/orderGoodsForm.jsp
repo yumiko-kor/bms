@@ -529,7 +529,7 @@
 				</td>
 				<td><h2>${myOrderList.goodsSalesPrice}원 (10% 할인)</h2></td>
 				<td><h2>${goods.goodsDeliveryPrice }원</h2></td> <!-- 배송비 -->
-				<td><h2><fmt:formatNumber value="${myOrderList.goodsSalesPrice/10}" type="number" var="point" /> ${goods.goodsPoint}원</h2></td>
+				<td><h2>${goods.goodsPoint}원</h2></td>
 				<td>
 				  <h2>${myOrderList.goodsSalesPrice * myOrderList.orderGoodsQty}원</h2>
 				  <input type="hidden" id="h_each_goods_price"  name="h_each_goods_price" value="${myOrderList.goodsSalesPrice * myOrderList.orderGoodsQty}" />

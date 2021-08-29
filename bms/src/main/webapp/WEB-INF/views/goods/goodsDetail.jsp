@@ -82,8 +82,7 @@
 </script>
 </head>
 <body>
-
-
+	<h1>${goods.goodsStatus}</h1>
 	<h1>${goods.goodsSort}</h1>
 	<h3>${goods.goodsTitle }</h3>
 	<h4>${goods.goodsWriter} &nbsp; 저| ${goods.goodsPublisher}</h4>
@@ -109,7 +108,7 @@
 				</tr>
 				<tr>
 					<td class="fixed">포인트적립</td>
-					<td class="active"><fmt:formatNumber value="${goods.goodsSalesPrice/10}" type="number" var="goodsPoint" /> ${goodsPoint}원(10% 할인)</td>
+					<td class="active"><fmt:formatNumber value="${goods.goodsSalesPrice/10}" type="number" var="goodsPoint" /> ${goodsPoint}원(10% 적립)</td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed">포인트 추가적립</td>

@@ -6,9 +6,9 @@
 
 <div id="ad_main_banner">
 	<ul class="bjqs">
-	    <li><img width="775" height="145" src="${contextPath}/resources/image/main_banner01.jpg"></li>
-		<li><img width="775" height="145" src="${contextPath}/resources/image/main_banner02.jpg"></li>
-		<li><img width="775" height="145" src="${contextPath}/resources/image/main_banner03.jpg"></li>
+	    <li><a href="${contextPath}/goods/goodsDetail.do?goodsId=2"><img width="775" height="145" src="${contextPath}/resources/image/main_banner01.jpg"></a></li>
+		<li><a href="${contextPath}/goods/goodsDetail.do?goodsId=23"><img width="775" height="145" src="${contextPath}/resources/image/main_banner02.jpg"></a></li>
+		<li><a href="${contextPath}/goods/goodsDetail.do?goodsId=1"><img width="775" height="145" src="${contextPath}/resources/image/main_banner03.jpg"></a></li>
 	</ul>
 </div>
 <div class="main_book">
@@ -56,7 +56,9 @@
 
 <div class="clear"></div>
 <div id="ad_sub_banner">
-	<img width="770" height="117" src="${contextPath}/resources/image/sub_banner02.jpg">
+	<a href="${contextPath}/goods/goodsDetail.do?goodsId=3" target="_self">
+		<img width="770" height="117" src="${contextPath}/resources/image/sub_banner02.jpg">
+	</a>
 </div>
 
 
