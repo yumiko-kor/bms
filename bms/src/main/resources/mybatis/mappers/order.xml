@@ -82,9 +82,10 @@
 	
 
 	<select id="goodsDetail" resultType="GoodsDTO" parameterType="int">
-		select
+		SELECT
+				GOODS_ID,
 				GOODS_DELIVERY_PRICE,
-                goods_point
+                GOODS_POINT
                 
 		FROM
 				T_SHOPPING_GOODS

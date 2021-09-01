@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.board"> <!-- alias 설정해야함 -->
+	
+	<insert id="insertBoard" parameterType="java.util.Map"   >
+		<selectKey resultType="int" keyProperty="boardId" order="BEFORE">
+	    	SELECT 
+	    			SEQ_BOARD_ID.NEXTVAL 
+	    	FROM 
+	    			DUAL
+	    </selectKey>
+		<selectKey resultType="int" keyProperty="ref" order="BEFORE">
+	    	SELECT 
+	    			SEQ_REF_ID.NEXTVAL 
+	    	FROM 
+	    			DUAL
+	    </selectKey>		
+		<![CDATA[		
+			INSERT INTO T_SHOPPING_BOARD (
+				BOARD_ID,
+				WRITER,
+				SUBJECT,
+				PASSWORD,
+				REG_DATE,
+				REF,
+				RE_STEP,
+				RE_LEVEL,
+				READ_COUNT,
+				CONTENT
+			)
+			VALUES(
+				#{boardId},
+				#{writer}, 
+				#{email}, 
+				#{subject}, 
+				#{password}, 
+				SYSDATE,
+				#{ref},				
+				1, 
+				1, 
+				0, 				
+				#{readCount},
+				#{content}
+			)
+		]]>  
+	</insert>
+
+	<!-- 하나의 게시글을 반환하는 쿼리 -->
+	<select id="getOneBoard" resultType="BoardDTO">
+		SELECT
+				*
+		FROM
+				T_SHOPPING_BOARD
+		WHERE
+				BOARD_ID=#{boardId}
+	</select>
+ 
+ 	<!-- 하나의 게시글을 수정하는 쿼리 -->
+	<update id="updateBoard">
+		UPDATE 
+				T_SHOPPING_BOARD 
+		SET 
+				SUBJECT=#{subject}, 
+				CONTENT=#{content} 
+		WHERE 
+				BOARD_ID=#{boardId}
+	</update>	
+
+
+	<!-- 스탭을 옮려주는 쿼리 -->
+	<update id="updateBoardReplyStep">
+		<![CDATA[
+			UPDATE 
+					T_SHOPPING_BOARD 
+			SET 
+					RE_STEP = RE_STEP+1
+			WHERE 
+					REF = #{ref} AND RE_STEP > #{reStep}
+		]]>
+	</update>
+	
+
+	<!-- 게시글을 삭제하는 쿼리 -->
+	<delete id="deleteBoard">
+		DELETE FROM 
+				T_SHOPPING_BOARD 
+		WHERE 
+				BOARD_ID=#{boardId}
+	</delete>
+	
+	<!-- 게시글의 비밀번호를 검증하는 쿼리 -->
+	<select id="validateUserCheck" resultType="BoardDTO">
+		SELECT
+				*
+		FROM
+				T_SHOPPING_BOARD
+		WHERE
+				BOARD_ID=#{boardId} AND 
+				PASSWORD=#{password} 
+	</select>
+	
+	<!-- 게시글 조회시 조회수가 1증가하는 쿼리 -->
+	<update id="increaseReadCount">
+		UPDATE
+				T_SHOPPING_BOARD
+		SET
+				READ_COUNT = READ_COUNT +1
+		WHERE
+				BOARD_ID=#{boardId}
+	</update>
+	
+	
+
+
+	<!-- 댓글을 등록하는 쿼리 -->
+	<insert id="insertReplyBoard">
+		INSERT INTO 
+				T_SHOPPING_BOARD
+		VALUES (
+				(SELECT 
+					MAX(BOARD_ID) + 1 
+				FROM 
+					T_SHOPPING_BOARD AS B),
+			    #{writer},
+			    #{email},
+			    #{subject},
+			    #{password},
+			    SYSTIME,
+			    #{ref},
+			    #{reStep} + 1,
+			    #{reLevel} + 1,
+			    0,
+			    #{content})
+	</insert>	
+
+</mapper>

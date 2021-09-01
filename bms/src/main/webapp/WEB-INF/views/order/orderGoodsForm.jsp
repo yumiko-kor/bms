@@ -511,7 +511,7 @@
 			</tr>
 			<tr>
 				<td class="goods_image">
-				  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${myOrderList.goodsId }">
+				  <a href="${contextPath}/goods/goodsDetail.do?command=goodsDetail&goodsId=${myOrderList.goodsId }">
 				    <img width="75" alt="HTML5 &amp; CSS3"  src="${contextPath}/thumbnails.do?goodsId=${myOrderList.goodsId}&fileName=${myOrderList.goodsFileName}">
 				    <input type="hidden" id="h_goods_id" name="h_goods_id" value="${myOrderList.goodsId }" />
 				    <input type="hidden" id="h_goods_fileName" name="h_goods_fileName" value="${myOrderList.goodsFileName }" />
@@ -519,7 +519,7 @@
 				</td>
 				<td>
 				  <h2>
-				     <a href="${pageContext.request.contextPath}/goods/goods.do?command=goodsDetail&goodsId=${myOrderList.goodsId }">${myOrderList.goodsTitle }</A>
+				     <a href="${pageContext.request.contextPath}/goods/goodsDetail.do?command=goodsDetail&goodsId=${myOrderList.goodsId }">${myOrderList.goodsTitle }</A>
 				      <input type="hidden" id="h_goods_title" name="h_goods_title" value="${myOrderList.goodsTitle }" />
 				  </h2>
 				</td>
@@ -697,7 +697,7 @@
 					   <input type="radio" id="pay_method" name="pay_method" value="신용카드"   onClick="fn_pay_card()" checked>신용카드 &nbsp;&nbsp;&nbsp; 
 					   <input type="radio" id="pay_method" name="pay_method" value="제휴 신용카드"  >제휴 신용카드 &nbsp;&nbsp;&nbsp; 
 					   <input type="radio" id="pay_method" name="pay_method" value="실시간 계좌이체">실시간 계좌이체 &nbsp;&nbsp;&nbsp;
-					   <input type="radio" id="pay_method" name="pay_method" value="무통장 입금">무통장 입금 &nbsp;&nbsp;&nbsp;
+					   <input type="radio" id="pay_method" name="pay_method" value="국민은행 123-456-789 (예금주: BMS)">무통장 입금 &nbsp;&nbsp;&nbsp;
 					</td>
 				</tr>
 				<tr >
@@ -710,7 +710,7 @@
 				</tr>
 				<tr >
 					<td>
-					   <input type="radio"  id="pay_method" name="pay_method" value="직접입금">직접입금&nbsp;&nbsp;&nbsp;
+					   <input type="radio"  id="pay_method" name="pay_method" value="국민은행 123-456-789 (예금주: BMS)">직접입금&nbsp;&nbsp;&nbsp;
 					</td>
 				</tr>
 				<tr id="tr_pay_card">

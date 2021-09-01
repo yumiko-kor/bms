@@ -37,6 +37,12 @@
 				<li><a href="${contextPath}/main/main.do">신간</a></li>
 			</ul>
 		</li>
+		<li>
+			<h3>고객센터</h3>
+			<ul>
+				<li><a href="${contextPath}/board/boardList.do">문의게시판</a></li>
+			</ul>
+		</li>		
 		<br><br><br>
 	 </c:otherwise>
 	</c:choose>	
