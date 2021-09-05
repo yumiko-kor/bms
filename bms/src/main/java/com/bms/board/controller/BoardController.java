@@ -139,7 +139,7 @@ public class BoardController {
 	@RequestMapping(value = "/boardReplyWrite.do" , method = RequestMethod.POST)
 	public String boardReplyWrite(BoardDTO bdto) throws Exception{
 		boardService.insertReplyBoard(bdto);
-		return "redirect:/board/boardList";	
+		return "redirect:/board/boardList.do";	
 	}
 	
 	

@@ -20,7 +20,7 @@
 			var onePageViewCount = $("#onePageViewCount").val();
 			var searchKeyword = $("#searchKeyword").val();
 			var searchWord = $("#searchWord").val();
-			var url = "${contextPath}/boardAdvance/boardList.do?";
+			var url = "${contextPath}/board/boardList.do?";
 				url	+= "onePageViewCount="+onePageViewCount;
 				url	+= "&searchKeyword="+searchKeyword;
 				url	+= "&searchWord="+searchWord;
@@ -32,7 +32,7 @@
 			var onePageViewCount = $("#onePageViewCount").val();
 			var searchKeyword = $("#searchKeyword").val();
 			var searchWord = $("#searchWord").val();
-			var url = "${contextPath}/boardAdvance/boardList.do?";
+			var url = "${contextPath}/board/boardList.do?";
 				url +="onePageViewCount="+onePageViewCount;
 				url += "&searchKeyword="+searchKeyword;
 				url += "&searchWord="+searchWord;
@@ -52,7 +52,7 @@
                     <div class="card mb-4">
                         <div class="card-header">
                             <i class="fas fa-table mr-1"></i>
-                            Total <span style="color: red; font-weight: bold">${totalBoardCount}</span> entries
+                            전체 <span style="color: red; font-weight: bold">${totalBoardCount}</span> 개
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -60,12 +60,12 @@
                                 	<div class="row">
                                 		<div class="col-sm-12 col-md-6">
                                 			<div class="dataTables_length" id="dataTable_length">
-                                				<label>Show 
+                                				<label>목록 
                                  				<select id="onePageViewCount" name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
                                  					<option <c:if test="${onePageViewCount eq 5}"> selected</c:if> value="5">5</option>
 													<option <c:if test="${onePageViewCount eq 7}"> selected</c:if> value="7">7</option>
 													<option <c:if test="${onePageViewCount eq 10}"> selected</c:if> value="10">10</option>
-                                 				</select> entries
+                                 				</select> 개 보기
                                  				</label>
                                  			</div>		                               
                               			</div>
@@ -129,7 +129,7 @@
                                   		<ul class="pagination">
                                   			<c:if test="${startPage gt 10 }">
                                    			<li class="paginate_button page-item previous" id="dataTable_previous">
-                                   				<a href="${contextPath }/board/boardList.do?currentPageNumber=${startPage - 10}&onePageViewCount=${onePageViewCount}&searchKeyword=${searchKeyword}&searchWord=${searchWord}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+                                   				<a href="${contextPath }/board/boardList.do?currentPageNumber=${startPage - 10}&onePageViewCount=${onePageViewCount}&searchKeyword=${searchKeyword}&searchWord=${searchWord}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">이전</a>
                                    			</li>
                                   			</c:if>
                                   			<c:forEach var="i" begin="${startPage}" end="${endPage }" >
@@ -139,7 +139,7 @@
                                    		</c:forEach>
                                   			<c:if test="${endPage le totalBoardCount && endPage ge 10}"> 
                                    			<li class="paginate_button page-item next" id="dataTable_next">
-                                   				<a href="${contextPath }/board/boardList.do?currentPageNumber=${startPage + 10}&onePageViewCount=${onePageViewCount}&searchKeyword=${searchKeyword}&searchWord=${searchWord}" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
+                                   				<a href="${contextPath }/board/boardList.do?currentPageNumber=${startPage + 10}&onePageViewCount=${onePageViewCount}&searchKeyword=${searchKeyword}&searchWord=${searchWord}" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">다음</a>
                                    			</li>
                                   			</c:if>
                                   		</ul>
