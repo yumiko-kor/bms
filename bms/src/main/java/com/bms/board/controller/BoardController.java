@@ -107,7 +107,7 @@ public class BoardController {
 		System.out.println("searchWord : " + searchWord);
 		System.out.println("====================================\n");
 		
-		return "board/boardList.do";
+		return "/board/boardList";
 		
 	}
 	
@@ -115,7 +115,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "/boardWrite.do" , method = RequestMethod.GET)
 	public String boardWrite() throws Exception{
-		return "board/bWrite";
+		return "/board/boardWrite";
 	}
 	
 	
@@ -123,7 +123,7 @@ public class BoardController {
 	@RequestMapping(value = "/boardWrite.do" , method = RequestMethod.POST)
 	public String boardWrite(BoardDTO bdto) throws Exception{
 		boardService.insertBoard(bdto);
-		return "redirect:/board/boardList";	
+		return "redirect:/board/boardList.do";	
 	}
 	
 	
@@ -131,7 +131,7 @@ public class BoardController {
 	@RequestMapping(value = "/boardReplyWrite.do" , method = RequestMethod.GET)
 	public String boardReplyWrite(@RequestParam("boardId") int boardId , Model model) throws Exception{
 		model.addAttribute("bdto", boardService.getOneBoard(boardId));
-		return "board/bReply";
+		return "/board/boardReply";
 	}
 	
 	
@@ -150,7 +150,7 @@ public class BoardController {
 		BoardDTO bdto = boardService.getOneBoard(boardId);
 		model.addAttribute("bdto",bdto);
 		
-		return "board/bInfo";
+		return "/board/boardInfo";
 		
 	}
 	
@@ -162,7 +162,7 @@ public class BoardController {
 		BoardDTO bdto = boardService.getOneBoard(boardId);
 		model.addAttribute("bdto", bdto);
 		
-		return "board/bUpdate";
+		return "/board/boardUpdate";
 		
 	}
 	
@@ -200,7 +200,7 @@ public class BoardController {
 		BoardDTO bdto = boardService.getOneBoard(boardId);
 		model.addAttribute("bdto", bdto);
 		
-		return "board/bDelete";
+		return "/board/boardDelete";
 		
 	}
 	

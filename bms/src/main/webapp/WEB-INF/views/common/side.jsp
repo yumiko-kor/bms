@@ -34,13 +34,9 @@
 			<ul>
 				<li><a href="${contextPath}/main/main.do">베스트셀러</a></li>
 				<li><a href="${contextPath}/main/main.do">스테디셀러</a></li>
-				<li><a href="${contextPath}/main/main.do">신간</a></li>
-			</ul>
-		</li>
-		<li>
-			<h3>고객센터</h3>
-			<ul>
+				<li><a href="${contextPath}/main/main.do">신간</a></li><br>
 				<li><a href="${contextPath}/board/boardList.do">문의게시판</a></li>
+				<br><br><br>
 			</ul>
 		</li>		
 		<br><br><br>
@@ -66,9 +62,9 @@
 	<a href="#"><img width="190" height="362" src="${contextPath}/resources/image/side_banner1.jpg"></a>
 </div>
 <div id="banner">
-	<a href="#"><img width="190" height="104" src="${contextPath}/resources/image/call_center_logo.jpg"></a>
+	<a href="#"><img width="200" height="110" src="${contextPath}/resources/image/callcenter_logo.jpg"></a>
 </div>
 <div id="banner">
-	<a href="#"><img width="190" height="69" src="${contextPath}/resources/image/QnA_logo.jpg"></a>
+	<a href="#"><img width="200" height="150" src="${contextPath}/resources/image/QnAlogo.jpg"></a>
 </div>
 </html>

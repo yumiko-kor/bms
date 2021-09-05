@@ -5,7 +5,7 @@
 <body>
 	<div id="logo">
 	<a href="${contextPath}/main/main.do">
-		<img width="176" height="80" alt="bms_logo" src="${contextPath}/resources/image/bms_logo2.png">
+		<img width="200" height="120" alt="bms_logo" src="${contextPath}/resources/image/bms_logo2.jpg">
 		</a>
 	</div>
 	<div id="head_link">

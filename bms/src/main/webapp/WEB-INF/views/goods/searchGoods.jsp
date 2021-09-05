@@ -8,7 +8,7 @@
 </head>
 <body>
 	<hgroup>
-		<h1>컴퓨터와 인터넷</h1>
+		<h1>검색 결과</h1>
 		<h2>오늘의 책</h2>
 	</hgroup>
 	<section id="new_book">
@@ -33,7 +33,7 @@
 						<a href="${contextPath}/goods/goodsDetail.do?goodsId=${item.goodsId}">
 						<img width="75" alt="상품명" src="${contextPath}/thumbnails.do?goodsId=${item.goodsId}&fileName=${item.goodsFileName}">
 						</a>
-						<div class="sort">[컴퓨터 인터넷]</div>
+						<div class="sort">${goods.goodsSort}</div>
 						<div class="title">
 							<a href="${contextPath}/goods/goodsDetail.do?goodsId=${item.goodsId}">
 							  ${item.goodsTitle}
@@ -43,7 +43,7 @@
 						<div class="price">
 							<span><fmt:formatNumber  value="${item.goodsPrice}" type="number" /></span> <br>
 							<fmt:formatNumber value="${item.goodsSalesPrice}" type="number"  />
-				            (<fmt:formatNumber value="${(item.goodsPrice - item.goodsSalesPrice) / item.goodsPrice * 10}"/>%할인)
+				            (<fmt:formatNumber value="${(item.goodsPrice - item.goodsSalesPrice) / item.goodsPrice * 10} "/> 10% 할인)
 						</div>
 					</div>
 				</li>
@@ -80,7 +80,7 @@
 				<td class="price">
 					<span><fmt:formatNumber  value="${item.goodsPrice}" type="number" /></span> <br>
 					<fmt:formatNumber value="${item.goodsSalesPrice}" type="number"  /><br>
-		            (<fmt:formatNumber value="${(item.goodsPrice - item.goodsSalesPrice) / item.goodsPrice * 10}"/>%할인)
+		           (10% 할인)
 				</td>
 			</tr>
 			</c:forEach>

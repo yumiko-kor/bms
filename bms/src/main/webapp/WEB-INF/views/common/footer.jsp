@@ -4,7 +4,7 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
 <div class="clear"></div>
-<a href="#"><img width="147px"  height="80px" alt="bms_logo" src="${contextPath}/resources/image/bms_logo1.png" /></a>
+<a href="#"><img width="120px"  height="50px" alt="bms_logo" src="${contextPath}/resources/image/bms_logo1.jpg" /></a>
 <div style="text-align: center; font-weight: bold;" >
 	 <p>㈜ 스프링 네트웍스 &nbsp; /  &nbsp; 대표이사: 팀 버너스 리  </p>
 	 <p>사업자등록번호 : 111-11-11111  &nbsp; / &nbsp; 서울특별시 통신판매업신고번호 : 제 777호 </p>  

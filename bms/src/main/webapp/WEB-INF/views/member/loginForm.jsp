@@ -37,7 +37,7 @@
 			</tr>
 		</table>
 		<p align="center">
-   			<img src="${contextPath }/resources/image/bms_logo1.png" width=300>
+   			<img src="${contextPath }/resources/image/bms_logo1.jpg" width=300>
    		</p>
 	</form>
 </body>

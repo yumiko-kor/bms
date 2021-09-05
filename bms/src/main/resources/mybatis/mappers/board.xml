@@ -1,7 +1,111 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.board"> <!-- alias 설정해야함 -->
+<mapper namespace="mapper.board">
+
+	<!-- 게시글의 개수를 반환하는 쿼리 -->
+	<select id="getAllBoardCount" resultType="int">
+		<choose>
+			<when test="searchKeyword.equals('total')"> <!-- searchKeyword가 전체검색일 경우 -->
+				<choose>
+					<when test="searchWord.equals('')"> <!--  특정 키워드가 없을경우 (보통의 경우)  -->
+						SELECT 
+								COUNT(*) 
+						FROM 
+								T_SHOPPING_BOARD
+					</when>
+					<otherwise>	<!-- 특정 키워드가 있을 경우 -->
+						SELECT 
+								COUNT(*) 
+						FROM 
+								T_SHOPPING_BOARD
+						WHERE
+                                SUBJECT LIKE '%' || #{searchWord} || '%' OR 
+								WRITER LIKE '%'|| #{searchWord} || '%'
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>	<!-- searchKeyword가 전체 검색이 아닐 경우 -->
+				SELECT 
+						COUNT(*) 
+				FROM 
+						T_SHOPPING_BOARD 
+				WHERE
+					<if test="searchKeyword.equals('writer')">
+						WRITER LIKE '%' || #{searchWord} || '%'
+					</if>
+					<if test="searchKeyword.equals('subject')">
+						SUBJECT LIKE '%' || #{searchWord} || '%'
+					</if>
+			</otherwise>
+		</choose>	
+	</select>
+
+	<!-- 게시글의 내용을 반환하는 쿼리 -->
+	<select id="getSearchBoard" resultType="BoardDTO">
+		<choose>
+			<when test="searchKeyword.equals('total')">	<!-- 전체 검색일 경우 -->
+				<choose>
+				<when test="searchWord.equals('')"> <!-- 전체 검색중 검색 문자가 없을 경우 -->
+				SELECT 
+						* 
+				FROM (
+						SELECT 
+								* 
+						FROM 
+								T_SHOPPING_BOARD
+						WHERE
+								SUBJECT LIKE '%' || #{searchWord} || '%' OR
+								WRITER LIKE '%' || #{searchWord} || '%'
+					) 
+				WHERE 
+						ROWNUM BETWEEN #{startBoardIdx} AND #{onePageViewCount} 
+				ORDER BY
+						REF DESC,
+						RE_STEP 
+				</when>
+				<otherwise>	<!-- 전체 검색중 검색 문자가 있을 경우 -->
+				SELECT 
+						* 
+				FROM (
+						SELECT 
+								* 
+						FROM 
+								T_SHOPPING_BOARD
+					) 
+				WHERE 
+						ROWNUM BETWEEN #{startBoardIdx} AND #{onePageViewCount} 
+				ORDER BY 
+						REF DESC, 
+						RE_STEP
+				</otherwise>
+				</choose>
+			</when>
+			<otherwise>	<!-- 서치 키워드를 이용하여 검색하는 경우 -->
+				SELECT
+						*
+				FROM	(
+							SELECT
+									*
+							FROM
+									T_SHOPPING_BOARD
+							WHERE
+								<if test="searchKeyword.equals('writer')">
+									WRITER LIKE '%' || #{searchWord} || '%'
+								</if>
+								<if test="searchKeyword.equals('subject')">
+									SUBJECT LIKE '%' || #{searchWord} || '%'
+								</if>
+						)
+				WHERE 
+						ROWNUM BETWEEN #{startBoardIdx} AND #{onePageViewCount} 
+				ORDER BY 
+						REF DESC, 
+						RE_STEP
+			</otherwise>
+		</choose>
+	</select>	
+	
 	
 	<insert id="insertBoard" parameterType="java.util.Map"   >
 		<selectKey resultType="int" keyProperty="boardId" order="BEFORE">
@@ -9,17 +113,11 @@
 	    			SEQ_BOARD_ID.NEXTVAL 
 	    	FROM 
 	    			DUAL
-	    </selectKey>
-		<selectKey resultType="int" keyProperty="ref" order="BEFORE">
-	    	SELECT 
-	    			SEQ_REF_ID.NEXTVAL 
-	    	FROM 
-	    			DUAL
-	    </selectKey>		
-		<![CDATA[		
+	    </selectKey>			
 			INSERT INTO T_SHOPPING_BOARD (
 				BOARD_ID,
 				WRITER,
+				EMAIL,
 				SUBJECT,
 				PASSWORD,
 				REG_DATE,
@@ -36,17 +134,15 @@
 				#{subject}, 
 				#{password}, 
 				SYSDATE,
-				#{ref},				
+				#{ref},
 				1, 
 				1, 
 				0, 				
-				#{readCount},
 				#{content}
 			)
-		]]>  
 	</insert>
-
-	<!-- 하나의 게시글을 반환하는 쿼리 -->
+	
+		<!-- 하나의 게시글을 반환하는 쿼리 -->
 	<select id="getOneBoard" resultType="BoardDTO">
 		SELECT
 				*
@@ -65,8 +161,7 @@
 				CONTENT=#{content} 
 		WHERE 
 				BOARD_ID=#{boardId}
-	</update>	
-
+	</update>
 
 	<!-- 스탭을 옮려주는 쿼리 -->
 	<update id="updateBoardReplyStep">
@@ -114,24 +209,29 @@
 
 
 	<!-- 댓글을 등록하는 쿼리 -->
-	<insert id="insertReplyBoard">
-		INSERT INTO 
-				T_SHOPPING_BOARD
-		VALUES (
-				(SELECT 
-					MAX(BOARD_ID) + 1 
-				FROM 
-					T_SHOPPING_BOARD AS B),
-			    #{writer},
-			    #{email},
-			    #{subject},
-			    #{password},
-			    SYSTIME,
-			    #{ref},
-			    #{reStep} + 1,
-			    #{reLevel} + 1,
-			    0,
-			    #{content})
+	<insert id="insertReplyBoard" parameterType="java.util.Map"   >
+		<selectKey resultType="int" keyProperty="boardId" order="BEFORE">
+	    	SELECT 
+	    			SEQ_BOARD_ID.NEXTVAL 
+	    	FROM 
+	    			DUAL
+	    </selectKey>
+		<![CDATA[		
+			INSERT INTO 
+					T_SHOPPING_BOARD
+			VALUES (
+					#{boardId},
+					#{writer},
+					#{email},
+					#{subject},
+					#{password},
+					SYSTIME,
+					#{ref},
+					#{reStep} + 1,
+					#{reLevel} + 1,
+					0,
+					#{content})
+		]]> 			
 	</insert>	
 
-</mapper>
+</mapper>	
