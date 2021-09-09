@@ -55,7 +55,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="page-header" align="center">
-							<h2>Board Write</h2>
+							<h2>문의 게시글</h2>
 							<br>
 						</div>
 						<div class="bs-component">

@@ -214,7 +214,7 @@ public class BoardController {
 		if (boardService.deleteBoard(bdto)) {
 			message = "<script>";
 			message += "alert('삭제 되었습니다.');";
-			message += "location.href='"+ request.getContextPath() +"/board/boardList';"; // javascript의 ${pageContext.request.contextPath}의 역할과 같다.
+			message += "location.href='"+ request.getContextPath() +"/board/boardList.do';"; // javascript의 ${pageContext.request.contextPath}의 역할과 같다.
 			message += "</script>";
 		}
 		else {

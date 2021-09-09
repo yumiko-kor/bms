@@ -70,19 +70,19 @@
                                  			</div>		                               
                               			</div>
                               			<div class="col-sm-12 col-md-6">
-                              				<input type="button" class="btn btn-primary" style="float: right" value="Write" onclick="location.href='${contextPath }/board/boardWrite.do'">
+                              				<input type="button" class="btn btn-primary" style="float: right" value="글쓰기" onclick="location.href='${contextPath }/board/boardWrite.do'">
                               			</div>
                               		</div>
 	                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 	                                    <colgroup>
-											<col width="5%">
-											<col width="60%">
-											<col width="20%">
-											<col width="10%">
-											<col width="5%">
+											<col width="15%">
+											<col width="30%">
+											<col width="15%">
+											<col width="25%">
+											<col width="15%">
 										</colgroup>
 	                                    <thead>                                     
-	                                        <tr>
+	                                        <tr align="center">
 	                                            <th>글번호</th>
 	                                            <th>제목</th>
 	                                            <th>작성자</th>
@@ -90,7 +90,7 @@
 	                                            <th>조회수</th>
 	                                        </tr>
 	                                    </thead>
-	                                    <tbody>
+	                                    <tbody align="center">
 	                                        <c:set var="order" value="${totalBoardCount - (currentPageNumber-1) * onePageViewCount}"/>
 	                                        <c:forEach var="bdto" items="${boardList}">	                                        	
 												<tr>
@@ -118,7 +118,7 @@
 														<option <c:if test="${searchKeyword eq 'subject'}"> selected</c:if> value="subject">제목</option>
 													</select>
 			                                 		<input type="text" style="width: 300px; display: inline;" class="form-control" id="searchWord" name="searchWord" value="${searchWord}" >
-													<input type="button" class="btn btn-outline-info btn-sm" value="Search" id="getSearchBoard">
+													<input type="button" class="btn btn-outline-info btn-sm" value="검색" id="getSearchBoard">
 												</td>
 											</tr>
 	                                    </tbody>										

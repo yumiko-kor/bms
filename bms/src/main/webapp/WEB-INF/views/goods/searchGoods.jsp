@@ -22,7 +22,7 @@
 			   <c:when test="${empty goodsList}" >
 			        <li>
 					<div id="book">
-						<h1>제품이없습니다.</h1>
+						<h1>제품이 없습니다.</h1>
 					  </div>
 				</li> 
 			   </c:when>

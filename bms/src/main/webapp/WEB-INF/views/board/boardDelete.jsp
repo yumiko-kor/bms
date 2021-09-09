@@ -41,7 +41,7 @@
 								<tr class="table-default" align="right">
 									<td colspan="4">
 										<input type="hidden" name="boardId" value="${bdto.boardId }">
-										<input type="submit" class="btn btn-primary btn-sm" value="delete">
+										<input type="submit" class="btn btn-primary btn-sm" value="삭제하기">
 										<input type="button" class="btn btn-primary btn-sm" onclick="location.href='${contextPath }/board/boardList.do'" value="게시판 보기">
 									</td>
 								</tr>

@@ -19,20 +19,22 @@
 				<td>예상적립금</td>
 				<td>주문금액합계</td>
 			</tr>
+			<c:forEach var="item" items="${myOrderList }">
 			<tr>
-			    <td> ${myOrderList.orderId }</td>
+			    <td> ${item.orderId }</td>
 				<td class="goods_image">
-				  <a href="${contextPath}/goods/goodsDetail.do?goodsId=${myOrderList.goodsId }">
-					<img width="75" alt=""  src="${contextPath}/thumbnails.do?goodsId=${myOrderList.goodsId}&fileName=${myOrderList.goodsFileName}">
+				  <a href="${contextPath}/goods/goodsDetail.do?goodsId=${item.goodsId }">
+					<img width="75" alt=""  src="${contextPath}/thumbnails.do?goodsId=${item.goodsId}&fileName=${item.goodsFileName}">
 				  </a>
 				</td>
-				<td><h2><a href="${contextPath}/goods/goodsDetail.do?goodsId=${myOrderList.goodsId }">${myOrderList.goodsTitle }</a></h2></td>
-				<td><h2>${myOrderList.orderGoodsQty }개</h2></td>
-				<td><h2>${myOrderList.orderGoodsQty *myOrderList.goodsSalesPrice}원 (10% 할인)</h2></td>
-				<td><h2>${goods.goodsDeliveryPrice }원</h2></td>
-				<td><h2>${goods.goodsPoint }원</h2></td>
-				<td><h2>${myOrderList.orderGoodsQty *myOrderList.goodsSalesPrice}원</h2></td>
+				<td><h2><a href="${contextPath}/goods/goodsDetail.do?goodsId=${item.goodsId }">${item.goodsTitle }</a></h2></td>
+				<td><h2>${item.orderGoodsQty }개</h2></td>
+				<td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원 (10% 할인)</h2></td>
+				<td><h2>0원</h2></td>
+				<td><h2>${1500 *item.orderGoodsQty }원</h2></td>
+				<td><h2>${item.orderGoodsQty *item.goodsSalesPrice}원</h2></td>
 			</tr>
+			</c:forEach>
 		</tbody>
 	</table>
 	<div class="clear"></div>

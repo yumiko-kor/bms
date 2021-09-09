@@ -123,6 +123,7 @@ public class OrderController {
 		mv.addObject("myOrderInfo",receiverMap);
 		mv.addObject("myOrderList", myOrderList);
 		
+		
 		return mv;
 		
 	}

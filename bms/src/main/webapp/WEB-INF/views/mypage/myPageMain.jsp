@@ -38,7 +38,8 @@
 </script>
 </head>
 <body>
-<h1>최근주문내역<a href="#"> <img src="${contextPath}/resources/image/btn_more_see.jpg"></a></h1>
+<h1>최근주문내역<a href="${contextPath}/mypage/listMyOrderHistory.do"> 
+<img src="${contextPath}/resources/image/btn_more_see.jpg" ></a></h1>
 <table class="list_view">
 	<tbody align=center >
 		<tr style="background:#33ff00" >
@@ -125,7 +126,7 @@
 
 <br><br><br>	
 <h1>나의 정보
-    <a href="#"> <img src="${contextPath}/resources/image/btn_more_see.jpg" /></a>
+    <a href="${contextPath}/mypage/myDetailInfo.do"> <img src="${contextPath}/resources/image/btn_more_see.jpg" /></a>
 </h1>
 <table style="border: 0; width: 100%;">
   <tr>
