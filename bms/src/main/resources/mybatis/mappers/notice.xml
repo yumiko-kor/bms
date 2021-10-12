@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.notice">
+
+	<!-- 게시글의 개수를 반환하는 쿼리 -->
+	<select id="getAllNoticeCount" resultType="int">
+		<choose>
+			<when test="searchKeyword.equals('total')"> <!-- searchKeyword가 전체검색일 경우 -->
+				<choose>
+					<when test="searchWord.equals('')"> <!--  특정 키워드가 없을경우 (보통의 경우)  -->
+						SELECT 
+								COUNT(*) 
+						FROM 
+								T_SHOPPING_NOTICE
+					</when>
+					<otherwise>	<!-- 특정 키워드가 있을 경우 -->
+						SELECT 
+								COUNT(*) 
+						FROM 
+								T_SHOPPING_NOTICE
+						WHERE
+                                SUBJECT LIKE '%' || #{searchWord} || '%' OR 
+								WRITER LIKE '%'|| #{searchWord} || '%'
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>	<!-- searchKeyword가 전체 검색이 아닐 경우 -->
+				SELECT 
+						COUNT(*) 
+				FROM 
+						T_SHOPPING_NOTICE 
+				WHERE
+					<if test="searchKeyword.equals('writer')">
+						WRITER LIKE '%' || #{searchWord} || '%'
+					</if>
+					<if test="searchKeyword.equals('subject')">
+						SUBJECT LIKE '%' || #{searchWord} || '%'
+					</if>
+			</otherwise>
+		</choose>	
+	</select>
+
+	<!-- 게시글의 내용을 반환하는 쿼리 -->
+	<select id="getSearchNotice" resultType="NoticeDTO">
+		<choose>
+			<when test="searchKeyword.equals('total')">	<!-- 전체 검색일 경우 -->
+				<choose>
+				<when test="searchWord.equals('')"> <!-- 전체 검색중 검색 문자가 없을 경우 -->
+				SELECT 
+						* 
+				FROM (
+						SELECT 
+								* 
+						FROM 
+								T_SHOPPING_NOTICE
+						WHERE
+								SUBJECT LIKE '%' || #{searchWord} || '%' OR
+								WRITER LIKE '%' || #{searchWord} || '%'
+					) 
+				WHERE 
+						ROWNUM BETWEEN #{startBoardIdx} AND #{onePageViewCount} 
+				</when>
+				<otherwise>	<!-- 전체 검색중 검색 문자가 있을 경우 -->
+				SELECT 
+						* 
+				FROM (
+						SELECT 
+								* 
+						FROM 
+								T_SHOPPING_NOTICE
+					) 
+				WHERE 
+						ROWNUM BETWEEN #{startBoardIdx} AND #{onePageViewCount} 
+				</otherwise>
+				</choose>
+			</when>
+			<otherwise>	<!-- 서치 키워드를 이용하여 검색하는 경우 -->
+				SELECT
+						*
+				FROM	(
+							SELECT
+									*
+							FROM
+									T_SHOPPING_NOTICE
+							WHERE
+								<if test="searchKeyword.equals('writer')">
+									WRITER LIKE '%' || #{searchWord} || '%'
+								</if>
+								<if test="searchKeyword.equals('subject')">
+									SUBJECT LIKE '%' || #{searchWord} || '%'
+								</if>
+						)
+				WHERE 
+						ROWNUM BETWEEN #{startBoardIdx} AND #{onePageViewCount} 
+			</otherwise>
+		</choose>
+	</select>	
+	
+	
+	<insert id="insertNotice" parameterType="java.util.Map"   >
+		<selectKey resultType="int" keyProperty="noticeId" order="BEFORE">
+	    	SELECT 
+	    			SEQ_NOTICE_ID.NEXTVAL 
+	    	FROM 
+	    			DUAL
+	    </selectKey>			
+			INSERT INTO T_SHOPPING_NOTICE (
+				NOTICE_ID,
+				WRITER,
+				SUBJECT,
+				PASSWORD,
+				REG_DATE,
+				READ_COUNT,
+				CONTENT
+			)
+			VALUES(
+				#{noticeId},
+				#{writer}, 
+				#{subject}, 
+				#{password}, 
+				SYSDATE,
+				0, 				
+				#{content}
+			)
+	</insert>
+	
+		<!-- 하나의 게시글을 반환하는 쿼리 -->
+	<select id="getOneNotice" resultType="NoticeDTO">
+		SELECT
+				*
+		FROM
+				T_SHOPPING_NOTICE
+		WHERE
+				NOTICE_ID=#{noticeId}
+	</select>
+ 
+ 	<!-- 하나의 게시글을 수정하는 쿼리 -->
+	<update id="updateNotice">
+		UPDATE 
+				T_SHOPPING_NOTICE 
+		SET 
+				SUBJECT=#{subject}, 
+				CONTENT=#{content} 
+		WHERE 
+				NOTICE_ID=#{noticeId}
+	</update>
+
+	
+	<!-- 게시글을 삭제하는 쿼리 -->
+	<delete id="deleteNotice">
+		DELETE FROM 
+				T_SHOPPING_NOTICE 
+		WHERE 
+				NOTICE_ID=#{noticeId}
+	</delete>
+	
+	<!-- 게시글의 비밀번호를 검증하는 쿼리 -->
+	<select id="validateUserCheck" resultType="NoticeDTO">
+	<![CDATA[
+		SELECT
+				*
+		FROM
+				T_SHOPPING_NOTICE
+		WHERE
+				NOTICE_ID=#{noticeId} AND 
+				PASSWORD=#{password} 
+	]]>			
+	</select>
+	
+	<!-- 게시글 조회시 조회수가 1증가하는 쿼리 -->
+	<update id="increaseReadCount">
+		UPDATE
+				T_SHOPPING_NOTICE
+		SET
+				READ_COUNT = READ_COUNT +1
+		WHERE
+				NOTICE_ID=#{noticeId}
+	</update>
+	
+</mapper>	

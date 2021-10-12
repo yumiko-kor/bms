@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"  />
 <c:set var="orderer_hp" 			 value=""/>			<!-- 주문자 휴대폰 번호 -->
 <c:set var="final_total_order_price" value="0" />		<!-- 최종 결제 금액 -->
@@ -8,6 +7,7 @@
 <c:set var="total_order_goods_qty"   value="0" />		<!-- 총 상품수 -->
 <c:set var="total_discount_price"    value="0" />		<!-- 총할인금액 -->
 <c:set var="total_delivery_price"    value="0" />		<!-- 총 배송비 -->
+
 <head>
 <style>
 #layer {
@@ -509,36 +509,38 @@
 				<td>예상적립금</td>
 				<td>주문금액합계</td>
 			</tr>
-			<tr>
-				<td class="goods_image">
-				  <a href="${contextPath}/goods/goodsDetail.do?command=goodsDetail&goodsId=${myOrderList.goodsId }">
-				    <img width="75" alt="HTML5 &amp; CSS3"  src="${contextPath}/thumbnails.do?goodsId=${myOrderList.goodsId}&fileName=${myOrderList.goodsFileName}">
-				    <input type="hidden" id="h_goods_id" name="h_goods_id" value="${myOrderList.goodsId }" />
-				    <input type="hidden" id="h_goods_fileName" name="h_goods_fileName" value="${myOrderList.goodsFileName }" />
-				  </a>
-				</td>
-				<td>
-				  <h2>
-				     <a href="${pageContext.request.contextPath}/goods/goodsDetail.do?command=goodsDetail&goodsId=${myOrderList.goodsId }">${myOrderList.goodsTitle }</A>
-				      <input type="hidden" id="h_goods_title" name="h_goods_title" value="${myOrderList.goodsTitle }" />
-				  </h2>
-				</td>
-				<td>
-				  <h2>${myOrderList.orderGoodsQty }개</h2>
-				    <input type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${myOrderList.orderGoodsQty}" />
-				</td>
-				<td><h2>${myOrderList.goodsSalesPrice}원 (10% 할인)</h2></td>
-				<td><h2>${goods.goodsDeliveryPrice }원</h2></td> <!-- 배송비 -->
-				<td><h2>${goods.goodsPoint}원</h2></td>
-				<td>
-				  <h2>${myOrderList.goodsSalesPrice * myOrderList.orderGoodsQty}원</h2>
-				  <input type="hidden" id="h_each_goods_price"  name="h_each_goods_price" value="${myOrderList.goodsSalesPrice * myOrderList.orderGoodsQty}" />
-				</td>
-		</tr>
-		
-		<c:set var="final_total_order_price" value="${final_total_order_price+ myOrderList.goodsSalesPrice* myOrderList.orderGoodsQty + goods.goodsDeliveryPrice}" />
-		<c:set var="total_order_price"       value="${total_order_price+ myOrderList.goodsSalesPrice* myOrderList.orderGoodsQty}" />
-		<c:set var="total_order_goods_qty"   value="${total_order_goods_qty + myOrderList.orderGoodsQty }" />
+			<c:forEach var="item" items="${myOrderList }">
+				<tr>
+					<td class="goods_image">
+					  <a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goodsId }">
+					    <img width="75" alt=""  src="${contextPath}/thumbnails.do?goodsId=${item.goodsId}&fileName=${item.goodsFileName}">
+					    <input type="hidden" id="h_goods_id" name="h_goods_id" value="${item.goodsId }" />
+					    <input type="hidden" id="h_goods_fileName" name="h_goods_fileName" value="${item.goodsFileName }" />
+					  </a>
+					</td>
+					<td>
+					  <h2>
+					     <a href="${pageContext.request.contextPath}/goods/goods.do?command=goodsDetail&goodsId=${item.goodsId }">${item.goodsTitle }</A>
+					      <input type="hidden" id="h_goods_title" name="h_goods_title" value="${item.goodsTitle }" />
+					  </h2>
+					</td>
+					<td>
+					  <h2>${item.orderGoodsQty }개</h2>
+					    <input type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.orderGoodsQty}" />
+					</td>
+					<td><h2>${item.goodsSalesPrice}원 (10% 할인)</h2></td>
+					<td><h2>0원</h2></td>
+					<td><h2>${1500 *item.orderGoodsQty}원</h2></td>
+					<td>
+					  <h2>${item.goodsSalesPrice * item.orderGoodsQty}원</h2>
+					  <input type="hidden" id="h_each_goods_price"  name="h_each_goods_price" value="${item.goodsSalesPrice * item.orderGoodsQty}" />
+					</td>
+			</tr>
+			
+			<c:set var="final_total_order_price" value="${final_total_order_price+ item.goodsSalesPrice* item.orderGoodsQty}" />
+			<c:set var="total_order_price"       value="${total_order_price+ item.goodsSalesPrice* item.orderGoodsQty}" />
+			<c:set var="total_order_goods_qty"   value="${total_order_goods_qty + item.orderGoodsQty }" />
+			</c:forEach>
 		</tbody>
 	</table>
 	<div class="clear"></div>
@@ -697,7 +699,7 @@
 					   <input type="radio" id="pay_method" name="pay_method" value="신용카드"   onClick="fn_pay_card()" checked>신용카드 &nbsp;&nbsp;&nbsp; 
 					   <input type="radio" id="pay_method" name="pay_method" value="제휴 신용카드"  >제휴 신용카드 &nbsp;&nbsp;&nbsp; 
 					   <input type="radio" id="pay_method" name="pay_method" value="실시간 계좌이체">실시간 계좌이체 &nbsp;&nbsp;&nbsp;
-					   <input type="radio" id="pay_method" name="pay_method" value="국민은행 123-456-789 (예금주: BMS)">무통장 입금 &nbsp;&nbsp;&nbsp;
+					   <input type="radio" id="pay_method" name="pay_method" value="무통장 입금">무통장 입금 &nbsp;&nbsp;&nbsp;
 					</td>
 				</tr>
 				<tr >
@@ -710,7 +712,7 @@
 				</tr>
 				<tr >
 					<td>
-					   <input type="radio"  id="pay_method" name="pay_method" value="국민은행 123-456-789 (예금주: BMS)">직접입금&nbsp;&nbsp;&nbsp;
+					   <input type="radio"  id="pay_method" name="pay_method" value="직접입금">직접입금&nbsp;&nbsp;&nbsp;
 					</td>
 				</tr>
 				<tr id="tr_pay_card">

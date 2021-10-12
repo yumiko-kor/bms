@@ -15,8 +15,6 @@ public class BoardDAOImpl implements BoardDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	
-	//mapper.board.
-
 	@Override
 	public List<BoardDTO> getSearchBoard(Map<String, Object> searchInfo) throws Exception {
 		return sqlSession.selectList("mapper.board.getSearchBoard",searchInfo);

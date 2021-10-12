@@ -15,6 +15,7 @@
 		<typeAlias type="com.bms.order.dto.OrderDTO" alias="OrderDTO" />
 		<typeAlias type="com.bms.mypage.dto.MyPageDTO" alias="MypageDTO" />    
 		<typeAlias type="com.bms.board.dto.BoardDTO" alias="BoardDTO" />    
+		<typeAlias type="com.bms.notice.dto.NoticeDTO" alias="NoticeDTO" />    
 	</typeAliases>
 	
 </configuration>
