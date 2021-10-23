@@ -35,6 +35,7 @@
 				<li><a href="${contextPath}/main/main.do">베스트셀러</a></li>
 				<li><a href="${contextPath}/main/main.do">스테디셀러</a></li>
 				<li><a href="${contextPath}/main/main.do">신간</a></li><br>
+				<li><a href="${contextPath}/notice/noticeList.do">공지사항</a></li>
 				<li><a href="${contextPath}/board/boardList.do">문의게시판</a></li>
 				<br><br><br>
 			</ul>

@@ -3,12 +3,24 @@
   "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
   "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-    <definition name="/notice/noticeInfo" extends="baseLayout">
-      <put-attribute name="title" value="공지사항" />
+   <definition name="/notice/noticeInfo" extends="baseLayout">
+      <put-attribute name="title" value="공지사항 상세페이지" />
       <put-attribute name="body" value="/WEB-INF/views/notice/noticeInfo.jsp" />
    </definition>
- 
-
+   <definition name="/notice/noticeList" extends="baseLayout">
+      <put-attribute name="title" value="공지사항" />
+      <put-attribute name="body" value="/WEB-INF/views/notice/noticeList.jsp" />
+   </definition>
+   <definition name="/notice/noticeWrite" extends="baseLayout">
+      <put-attribute name="title" value="공지사항 작성" />
+      <put-attribute name="body" value="/WEB-INF/views/notice/noticeWrite.jsp" />
+   </definition>
+   <definition name="/notice/noticeUpdate" extends="baseLayout">
+      <put-attribute name="title" value="공지사항 수정" />
+      <put-attribute name="body" value="/WEB-INF/views/notice/noticeUpdate.jsp" />
+   </definition>
+   <definition name="/notice/noticeDelete" extends="baseLayout">
+      <put-attribute name="title" value="공지사항 삭제" />
+      <put-attribute name="body" value="/WEB-INF/views/notice/noticeDelete.jsp" />
+   </definition>
 </tiles-definitions>
-
-

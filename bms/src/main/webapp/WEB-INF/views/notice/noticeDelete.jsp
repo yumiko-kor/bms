@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div align="center" style="padding-top: 100px">
-		<form action="boardDelete.do" method="post">
+		<form action="noticeDelete.do" method="post">
 			<div class="bs-docs-section">
 				<div class="row">
 					<div class="col-lg-12">
