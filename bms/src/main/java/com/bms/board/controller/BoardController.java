@@ -60,20 +60,7 @@ public class BoardController {
 		
 		if (currentPageNumber % 10 == 0) startPage = (currentPageNumber / 10 - 1) * 10 + 1;
 		else 							 startPage = (currentPageNumber / 10) * 10 + 1;							
-		
-		/*
-		 
-			[ 예시 ]  
-			
-			currentPage가 10페이면 시작페이지는 1  	<>		currentPage가 2페이지면  시작페이지는 1  
-			currentPage가 20페이면 시작페이지는 11  	<>		currentPage가 12페이지면 시작페이지는 11  
-			currentPage가 30페이면 시작페이지는 21 	<>		currentPage가 22페이지면 시작페이지는 21  
-			
-		*/
-		
-	
-		
-		// 끝페이지
+
 		int endPage = startPage + 9;
 			
 		// 끝페이지가 전체 페이지 개수보다 크다면 

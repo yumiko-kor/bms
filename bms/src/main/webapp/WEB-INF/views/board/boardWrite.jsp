@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>boardWrite</title>
+<title>게시글 작성</title>
 <script src="${contextPath }/resources/js/jquery-3.5.1.min.js"></script>
 <link href="${contextPath }/resources/css/styles.css" rel="stylesheet" />
 <script>

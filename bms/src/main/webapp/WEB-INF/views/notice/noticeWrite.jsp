@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>답글작성</title>
+<title>공지사항 작성</title>
 <script src="${contextPath }/resources/js/jquery-3.5.1.min.js"></script>
 <link href="${contextPath }/resources/css/styles.css" rel="stylesheet" />
 <script>
@@ -25,22 +25,20 @@
 				$("#subject").focus();
 				return false;
 			}
-			
-			
-			if ($("#email").val() == ""){
-				alert("이메일을 입력하세요.");
-				$("#email").focus();
-				return false;
-			}	
-			
+
 			if ($("#password").val() == ""){
 				alert("비밀번호를 입력하세요.");
 				$("#password").focus();
 				return false;
 			}
 			
-			var checkY = confirm("등록하시겠습니까?");
+			if ($("#content").val() == ""){
+				alert("내용을 입력하세요.");
+				$("#content").focus();
+				return false;
+			}
 			
+			var checkY = confirm("등록하시겠습니까?");
 			if (checkY) {
 				return true;
 			}
@@ -52,23 +50,20 @@
 </head>
 <body>
 	<div align="center" style="padding-top: 100px">
-		<form action="boardReplyWrite.do"  method="post">
+		<form action="noticeWrite"  method="post" ">
 			<div class="bs-docs-section">
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="page-header" align="center">
-							<h2>답글 작성</h2>
+							<h2>공지사항</h2>
 							<br>
 						</div>
 						<div class="bs-component">
 							<table class="table table-hover" style="width: 700px;">
 								<colgroup>
-									<col width="20%">
+									<col width="20%" >
 									<col width="80%">
 								</colgroup>
-								<tr class="table-default">
-									<td>${bdto.subject}</td>
-								</tr>
 								<tr class="table-default">
 									<td align="center"><span style="color: red">*</span>작성자</td>
 									<td><input type="text" class="form-control" id="writer" name="writer" /></td>
@@ -78,25 +73,18 @@
 									<td><input type="text" class="form-control" id="subject" name="subject" /></td>
 								</tr>
 								<tr class="table-default">
-									<td align="center"><span style="color: red">*</span>E-mail</td>
-									<td><input type="email" class="form-control" id="email" name="email" /></td>
-								</tr>
-								<tr class="table-default">
 									<td align="center"><span style="color: red">*</span>비밀번호</td>
 									<td><input type="password" class="form-control" id="password" name="password" /></td>
 								</tr>
 								<tr class="table-default">
-									<td align="center">문의 내용</td>
+									<td align="center">내용</td>
 									<td><textarea class="form-control" rows="10" cols="50" id="content" name="content"></textarea></td>
 								</tr>
 								<tr align="center">
-									<td colspan="2">
-										<input type="hidden" name="ref" value="${bdto.ref}">
-										<input type="hidden" name="reStep" value="${bdto.reStep}">
-										<input type="hidden" name="reLevel" value="${bdto.reLevel}">
-										<input type="submit" class="btn btn-primary btn-sm" value="답글작성" />
+									<td colspan=2>
+										<input type="submit" class="btn btn-primary btn-sm" value="작성하기" />
 										<input type="reset"  class="btn btn-primary btn-sm" value="다시쓰기" />
-										<input type="button" class="btn btn-primary btn-sm" onclick="location.href='${contextPath }/board/boardList.do'" value="게시판 보기">
+										<input type="button" class="btn btn-primary btn-sm" onclick="location.href='${contextPath }/notice/noticeList'" value="공지사항">
 									</td>
 								</tr>
 							</table>

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 삭제</title>
+<title>공지사항 삭제</title>
 <link href="${contextPath }/resources/css/styles.css" rel="stylesheet" />
 </head>
 <body>
@@ -17,22 +17,22 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="page-header" align="center">
-							<h1>게시글 삭제</h1>
+							<h1>공지사항 삭제</h1>
 							<br>
 						</div>
 						<div class="bs-component">
 							<table class="table table-hover" style="width: 700px">
 								<tr class="table-default">
 									<td>작성자</td>
-									<td>${bdto.writer}</td>
+									<td>${ndto.writer}</td>
 								</tr>
 								<tr class="table-default">
 									<td>작성일</td>
-									<td><fmt:formatDate value="${bdto.regDate}" pattern="yyyy-MM-dd"/></td>
+									<td><fmt:formatDate value="${ndto.regDate}" pattern="yyyy-MM-dd"/></td>
 								</tr>
 								<tr class="table-default">
 									<td>제목</td>
-									<td>${bdto.subject}</td>
+									<td>${ndto.subject}</td>
 								</tr>
 								<tr class="table-default">
 									<td>비밀번호</td>
@@ -40,9 +40,9 @@
 								</tr>
 								<tr class="table-default" align="right">
 									<td colspan="4">
-										<input type="hidden" name="boardId" value="${bdto.boardId }">
+										<input type="hidden" name="noticeId" value="${ndto.noticeId }">
 										<input type="submit" class="btn btn-primary btn-sm" value="삭제하기">
-										<input type="button" class="btn btn-primary btn-sm" onclick="location.href='${contextPath }/board/boardList.do'" value="게시판 보기">
+										<input type="button" class="btn btn-primary btn-sm" onclick="location.href='${contextPath }/notice/noticeList.do'" value="공지사항">
 									</td>
 								</tr>
 							</table>

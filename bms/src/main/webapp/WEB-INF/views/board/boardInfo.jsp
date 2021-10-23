@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>bInfo</title>
+<title>게시글 보기</title>
 <link href="${contextPath }/resources/css/styles.css" rel="stylesheet" />
 </head>
 <body>
