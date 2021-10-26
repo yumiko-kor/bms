@@ -9,6 +9,7 @@ public class NoticeDTO {
 	private String subject;
 	private String password;
 	private Date regDate;
+	private int readCount;
 	private String content;
 	
 	public int getNoticeId() {
@@ -46,6 +47,12 @@ public class NoticeDTO {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public int getReadCount() {
+		return readCount;
+	}
+	public void setReadCount(int readCount) {
+		this.readCount = readCount;
 	}	
 	
 }
