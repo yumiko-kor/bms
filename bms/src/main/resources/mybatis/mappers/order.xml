@@ -58,7 +58,7 @@
 
    <select id="selectOrderID" resultType="int"  >
 	    <![CDATA[
-		    SELECT 
+			SELECT 
 		    		ORDER_SEQ_NUM.NEXTVAL  
 		    FROM 
 		    		DUAL

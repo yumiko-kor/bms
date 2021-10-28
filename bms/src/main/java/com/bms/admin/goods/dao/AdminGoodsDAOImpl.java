@@ -57,11 +57,11 @@ public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
 	}
 	
 //	@Override
-//	public void deleteGoodsImage(List fileList) throws DataAccessException{
+//	public void deleteGoodsImage(List<ImageFileDTO> fileList) throws DataAccessException{
 //		int image_id;
 //		for (int i=0; i<fileList.size();i++){
 //			ImageFileDTO bean=(ImageFileDTO) fileList.get(i);
-//			image_id=bean.getImage_id();
+//			image_id=bean.getGoods_Id();
 //			sqlSession.delete("mapper.admin.goods.deleteGoodsImage",image_id);	
 //		}
 //	}

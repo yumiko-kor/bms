@@ -78,6 +78,8 @@
 	    formObj.submit();
 	    
 	}
+	
+	// 최종 결제에서 띄우는 JS
 
 </script>
 </head>

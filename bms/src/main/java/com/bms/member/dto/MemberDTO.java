@@ -31,6 +31,7 @@ public class MemberDTO {
 	private String namujiAddress;
 	private Date joinDate;
 	private String delYn;
+	
 	public String getMemberId() {
 		return memberId;
 	}
